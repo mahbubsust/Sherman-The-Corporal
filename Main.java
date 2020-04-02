@@ -36,10 +36,7 @@ public class Main extends Application {
         Pane root = new Pane();
         root.setPrefSize(1400, 700);
         
-        String path = "C:\\Users\\Mahbub Hasan\\Documents\\NetBeansProjects\\Sherman The Corporal\\src\\Audio\\a.mp3";
-        Media media = new Media(new File(path).toURI().toString());  
-        MediaPlayer mediaPlayer = new MediaPlayer(media);     
-        mediaPlayer.setAutoPlay(true);  
+        
 
         Image img = new Image(new FileInputStream("C:\\Users\\Mahbub Hasan\\Pictures\\Screenshots\\e.jpg"));
         ImageView imgView = new ImageView(img);
@@ -60,6 +57,7 @@ public class Main extends Application {
     }
 
     private class GameMenu extends Parent {
+        MediaPlayer player;
         public GameMenu() {
             VBox menu0 = new VBox(10);
             VBox menu1 = new VBox(10);
@@ -74,6 +72,11 @@ public class Main extends Application {
             
             menu2.setTranslateX(500);
             menu2.setTranslateY(300);
+            
+            String path = "C:\\Users\\Mahbub Hasan\\Documents\\NetBeansProjects\\Sherman The Corporal\\src\\Audio\\a.mp3";
+            Media media = new Media(new File(path).toURI().toString());  
+            MediaPlayer mediaPlayer = new MediaPlayer(media);     
+            mediaPlayer.setAutoPlay(true);  
 
             final int offset = 400;
 
@@ -169,10 +172,13 @@ public class Main extends Application {
                 tt.setOnFinished(evt -> {
                     getChildren().remove(menu2);
                 });
+                mediaPlayer.play();
                 
             });
             MenuButton btnOff = new MenuButton("OFF");
             btnOff.setOnMouseClicked(event -> {
+                
+                
                 getChildren().add(menu0);
 
                 TranslateTransition tt = new TranslateTransition(Duration.seconds(0.25), menu1);             
@@ -188,6 +194,8 @@ public class Main extends Application {
                 tt.setOnFinished(evt -> {
                     getChildren().remove(menu2);
                 });
+                mediaPlayer.pause();
+                
                 
             });
             
