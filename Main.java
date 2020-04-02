@@ -22,7 +22,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.input.KeyCode;
 
-public class main extends Application {
+public class Main extends Application {
 
     private GameMenu gameMenu;
 
