@@ -1,5 +1,6 @@
 package sherman.the.corporal;
 
+import java.io.File;
 import java.io.FileInputStream;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
@@ -21,8 +22,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.input.KeyCode;
+import static javafx.scene.input.KeyCode.C;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
-public class Main extends Application {
+public class Main1 extends Application {
 
     private GameMenu gameMenu;
 
@@ -31,14 +35,17 @@ public class Main extends Application {
 
         Pane root = new Pane();
         root.setPrefSize(1400, 700);
+        
+        String path = "C:\\Users\\Mahbub Hasan\\Documents\\NetBeansProjects\\Sherman The Corporal\\src\\Audio\\a.mp3";
+        Media media = new Media(new File(path).toURI().toString());  
+        MediaPlayer mediaPlayer = new MediaPlayer(media);     
+        mediaPlayer.setAutoPlay(true);  
 
         Image img = new Image(new FileInputStream("C:\\Users\\Mahbub Hasan\\Pictures\\Screenshots\\e.jpg"));
-        
-
         ImageView imgView = new ImageView(img);
         imgView.setFitWidth(1400);
         imgView.setFitHeight(700);
-
+        
         gameMenu = new GameMenu();
         gameMenu.setVisible(true);
         
@@ -56,16 +63,22 @@ public class Main extends Application {
         public GameMenu() {
             VBox menu0 = new VBox(10);
             VBox menu1 = new VBox(10);
+            VBox menu2 = new VBox(10);
+            
 
             menu0.setTranslateX(500);
             menu0.setTranslateY(300);
 
             menu1.setTranslateX(500);
             menu1.setTranslateY(300);
+            
+            menu2.setTranslateX(500);
+            menu2.setTranslateY(300);
 
             final int offset = 400;
 
             menu1.setTranslateX(offset);
+            menu2.setTranslateX(offset);
             
             MenuButton btnNewgame = new MenuButton("NEW GAME");
 
@@ -96,6 +109,7 @@ public class Main extends Application {
                     getChildren().remove(menu0);
                 });
             });
+            MenuButton btnHistry = new MenuButton("HISTORY");
 
             MenuButton btnExit = new MenuButton("EXIT");
             btnExit.setOnMouseClicked(event -> {
@@ -121,11 +135,67 @@ public class Main extends Application {
             });
 
             MenuButton btnSound = new MenuButton("SOUND");
+            btnSound.setOnMouseClicked(event -> {
+                getChildren().add(menu2);
+
+                TranslateTransition tt = new TranslateTransition(Duration.seconds(0.125), menu1);
+                tt.setToX(menu1.getTranslateX() - offset);
+
+                TranslateTransition tt1 = new TranslateTransition(Duration.seconds(0.5), menu2);
+                tt1.setToX(menu1.getTranslateX());
+
+                tt.play();
+                tt1.play();
+
+                tt.setOnFinished(evt -> {
+                    getChildren().remove(menu0);
+                    getChildren().remove(menu1);
+                });
+            });
+            MenuButton btnOn = new MenuButton("ON");
+            btnOn.setOnMouseClicked(event -> {
+                getChildren().add(menu0);
+
+                TranslateTransition tt = new TranslateTransition(Duration.seconds(0.25), menu1);             
+                tt.setToX(menu2.getTranslateX() + offset);
+
+                TranslateTransition tt1 = new TranslateTransition(Duration.seconds(0.5), menu0);
+                
+                tt1.setToX(menu0.getTranslateX()+offset);
+
+                tt.play();
+                tt1.play();
+
+                tt.setOnFinished(evt -> {
+                    getChildren().remove(menu2);
+                });
+                
+            });
+            MenuButton btnOff = new MenuButton("OFF");
+            btnOff.setOnMouseClicked(event -> {
+                getChildren().add(menu0);
+
+                TranslateTransition tt = new TranslateTransition(Duration.seconds(0.25), menu1);             
+                tt.setToX(menu2.getTranslateX() + offset);
+
+                TranslateTransition tt1 = new TranslateTransition(Duration.seconds(0.5), menu0);
+                
+                tt1.setToX(menu0.getTranslateX()+offset);
+
+                tt.play();
+                tt1.play();
+
+                tt.setOnFinished(evt -> {
+                    getChildren().remove(menu2);
+                });
+                
+            });
+            
             MenuButton btnVideo = new MenuButton("VIDEO");
 
-            menu0.getChildren().addAll(btnNewgame,btnResume, btnOptions, btnExit);
+            menu0.getChildren().addAll(btnNewgame,btnResume, btnOptions,btnHistry, btnExit);
             menu1.getChildren().addAll(btnBack, btnSound, btnVideo);
-
+            menu2.getChildren().addAll(btnOn,btnOff);
             Rectangle bg = new Rectangle(800, 600);
             bg.setFill(Color.GREY);
             bg.setOpacity(0.4);
