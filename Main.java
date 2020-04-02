@@ -26,7 +26,7 @@ import static javafx.scene.input.KeyCode.C;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-public class Main1 extends Application {
+public class Main extends Application {
 
     private GameMenu gameMenu;
 
