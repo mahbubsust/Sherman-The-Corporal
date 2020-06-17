@@ -1,5 +1,3 @@
 # Sherman-The-Corporal
 
-In this game, there would be a shooting car where a corporal named sherman is the root character fo this game who will shoots some object like pentagon or hexagon or trygons to get the points written in the object body.
-this points will help sherman to get in the next level. In this game , here some interesting obstacles like flying UFO or helicops will shoot at 
-sherman and will forbid him to go to the finishing line as well in the next level.
+"Sherman Corporal"-an arcade shooter game.There wILL be a shooter tank  where a corporal named sherman is the root character of this game.His target is to touch finishing line completing minimum requirements.The requirements will be shoot at some objects like pentagon or hexagon or trygons to get the points written in the object body.These points will help Sherman to get into the next level.While going through the finishing line there will be interesting obstacles like flying UFO or helicops,birds,animae who will halt him to touch the finishing line as well in the next level.As we proceed through the next level number of enemy and obstacles will increase.
