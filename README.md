@@ -1,1 +1,0 @@
-# Sherman-The-Corporal
